@@ -1,7 +1,12 @@
 from player_reader import PlayerReader
+from player import SortBy
 
 
-def sort_by_points(player):
+def sort_by_points(player, sort_criteria=None):
+    if sort_criteria is SortBy.ASSISTS:
+        return player.assists
+    if sort_criteria is SortBy.GOALS:
+        return player.goals
     return player.points
 
 
@@ -26,11 +31,11 @@ class Statistics:
 
         return list(players_of_team)
 
-    def top(self, how_many):
+    def top(self, how_many, sort_criteria=None):
         sorted_players = sorted(
             self._players,
             reverse=True,
-            key=sort_by_points
+            key=lambda player: sort_by_points(player, sort_criteria)
         )
 
         result = []

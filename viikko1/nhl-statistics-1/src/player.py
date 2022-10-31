@@ -1,3 +1,12 @@
+from enum import Enum
+
+
+class SortBy(Enum):
+    POINTS = 1
+    GOALS = 2
+    ASSISTS = 3
+
+
 class Player:
     def __init__(self, name, team, goals, assists):
         self.name = name
