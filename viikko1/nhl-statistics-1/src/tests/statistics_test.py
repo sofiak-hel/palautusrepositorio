@@ -1,7 +1,7 @@
 import unittest
 from statistics import Statistics
 from player_reader import PlayerReader
-from player import Player
+from player import Player, SortBy
 
 
 class PlayerReaderStub:
@@ -36,4 +36,10 @@ class TestVarasto(unittest.TestCase):
     def test_top(self):
         found = self.statistics.top(3)
         self.assertEqual(len(found), 4)
+        self.assertEqual(found[0].name, "Gretzky")
+
+    def test_top_with_sort_criteria(self):
+        found = self.statistics.top(0, SortBy.GOALS)
+        self.assertEqual(found[0].name, "Lemieux")
+        found = self.statistics.top(0, SortBy.ASSISTS)
         self.assertEqual(found[0].name, "Gretzky")
