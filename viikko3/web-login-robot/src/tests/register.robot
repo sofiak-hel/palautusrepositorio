@@ -1,5 +1,6 @@
 *** Settings ***
 Resource  resource.robot
+Resource  login_resource.robot
 Suite Setup  Open And Configure Browser
 Suite Teardown  Close Browser
 Test Setup  Go To Register Page
@@ -32,6 +33,32 @@ Register With Nonmatching Password And Password Confirmation
     Set Confirmation  somepass2
     Submit Registeration
     Register Should Fail With Message  Password and password confirmation must equal
+
+
+Login After Successful Registration
+    Set Username  somenew
+    Set Password  somepass123
+    Set Confirmation  somepass123
+    Submit Registeration
+
+    Go To Login Page
+    Set Username  somenew
+    Set Password  somepass123
+    Submit Credentials
+    Login Should Succeed
+
+
+Login After Failed Registration
+    Set Username  somenew
+    Set Password  nogood
+    Set Confirmation  nogood
+    Submit Registeration
+
+    Go To Login Page
+    Set Username  somenew
+    Set Password  nogood
+    Submit Credentials
+    Login Should Fail With Message  Invalid username or password
 
 
 *** Keywords ***
