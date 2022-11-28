@@ -88,3 +88,12 @@ class TestOstoskori(unittest.TestCase):
         self.kori.lisaa_tuote(maito)
         self.assertEqual(len(self.kori.ostokset()), 1)
         self.assertEqual(self.kori.ostokset()[0].lukumaara(), 2)
+
+    # osa 12
+    def test_osa_12(self):
+        maito = Tuote("Maito", 3)
+        self.kori.lisaa_tuote(maito)
+        self.kori.lisaa_tuote(maito)
+        ostos = self.kori.ostokset()[0]
+        self.assertEqual(ostos.tuotteen_nimi(), "Maito")
+        self.assertEqual(ostos.lukumaara(), 2)
