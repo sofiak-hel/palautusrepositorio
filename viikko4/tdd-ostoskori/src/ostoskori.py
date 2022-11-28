@@ -1,10 +1,11 @@
 from tuote import Tuote
 from ostos import Ostos
+from typing import List
 
 
 class Ostoskori:
     def __init__(self):
-        self._ostokset = []
+        self._ostokset: List[Ostos] = []
 
     def tavaroita_korissa(self):
         return len(self._ostokset)
@@ -23,5 +24,5 @@ class Ostoskori:
         pass
         # tyhjentää ostoskorin
 
-    def ostokset(self):
+    def ostokset(self) -> List[Ostos]:
         return self._ostokset
