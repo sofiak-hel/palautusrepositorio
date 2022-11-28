@@ -5,16 +5,19 @@ from typing import List
 
 class Ostoskori:
     def __init__(self):
-        self._ostokset: List[Ostos] = []
+        self._ostokset: Dict[Tuote, List[Ostos]] = {}
 
     def tavaroita_korissa(self):
-        return len(self._ostokset)
+        return sum([x.lukumaara() for x in self._ostokset.values()])
 
     def hinta(self):
-        return sum([x.hinta() for x in self._ostokset])
+        return sum([x.hinta() for x in self._ostokset.values()])
 
     def lisaa_tuote(self, lisattava: Tuote):
-        self._ostokset.append(Ostos(lisattava))
+        if lisattava in self._ostokset:
+            self._ostokset[lisattava].muuta_lukumaaraa(1)
+        else:
+            self._ostokset[lisattava] = Ostos(lisattava)
 
     def poista_tuote(self, poistettava: Tuote):
         # poistaa tuotteen
@@ -25,4 +28,4 @@ class Ostoskori:
         # tyhjentää ostoskorin
 
     def ostokset(self) -> List[Ostos]:
-        return self._ostokset
+        return [i for i in self._ostokset.values()]
