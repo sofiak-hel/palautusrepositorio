@@ -25,3 +25,22 @@ class TestOstoskori(unittest.TestCase):
         self.kori.lisaa_tuote(maito)
         self.assertEqual(self.kori.tavaroita_korissa(), 1)
         self.assertEqual(self.kori.hinta(), tuotteen_hinta)
+
+    # osa 4
+    def test_eri_tuotteilla_maara_2(self):
+        maito = Tuote("Maito", 3)
+        suklaa = Tuote("Suklaa", 5)
+        self.kori.lisaa_tuote(maito)
+        self.kori.lisaa_tuote(suklaa)
+        self.assertEqual(self.kori.tavaroita_korissa(), 2)
+
+    # osa 5
+    def test_eri_tuotteilla_yhteinen_hinta(self):
+        tuotteen_hinnat = [3, 5]
+        yhteishinta = sum(tuotteen_hinnat)
+
+        maito = Tuote("Maito", tuotteen_hinnat[0])
+        suklaa = Tuote("Suklaa", tuotteen_hinnat[1])
+        self.kori.lisaa_tuote(maito)
+        self.kori.lisaa_tuote(suklaa)
+        self.assertEqual(self.kori.hinta(), yhteishinta)
