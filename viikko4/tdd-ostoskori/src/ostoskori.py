@@ -24,8 +24,7 @@ class Ostoskori:
             self._ostokset[poistettava].muuta_lukumaaraa(-1)
 
     def tyhjenna(self):
-        pass
-        # tyhjentää ostoskorin
+        self._ostokset = {}
 
     def ostokset(self) -> List[Ostos]:
         return [i for i in self._ostokset.values()]
