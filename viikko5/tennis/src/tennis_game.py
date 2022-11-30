@@ -1,3 +1,4 @@
+## Historiasta löytyy luettavempi versio.
 g = [['Love', 'Fifteen', 'Thirty', 'Forty'], 'Deuce', ['Advantage ', 'Win for ']]
 class TennisGame:
     def __init__(self, player1_name, player2_name):
