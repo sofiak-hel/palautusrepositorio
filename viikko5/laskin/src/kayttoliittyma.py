@@ -14,11 +14,18 @@ class Kayttoliittyma:
         self._sovellus = sovellus
         self._root = root
 
+        self.edellinen = []
+
+        def kumoa():
+            self.edellinen.pop()
+            if len(self.edellinen) > 0:
+                self._sovellus.aseta_arvo(self.edellinen.pop())
+
         self.komennot = {
             Komento.SUMMA: lambda arvo: self._sovellus.plus(arvo),
             Komento.EROTUS: lambda arvo: self._sovellus.miinus(arvo),
             Komento.NOLLAUS: lambda arvo: self._sovellus.nollaa(),
-            Komento.KUMOA: lambda arvo: {}
+            Komento.KUMOA: lambda arvo: kumoa()
         }
 
     def kaynnista(self):
@@ -70,6 +77,7 @@ class Kayttoliittyma:
         except Exception:
             pass
 
+        self.edellinen.append(self._sovellus.tulos)
         self.komennot[komento](arvo)
 
         self._kumoa_painike["state"] = constants.NORMAL
